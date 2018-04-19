@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -98,7 +99,7 @@
             </objects>
             <point key="canvasLocation" x="-650.39999999999998" y="-52.623688155922046"/>
         </scene>
-        <!--清單-->
+        <!--代辦清單-->
         <scene sceneID="K7F-h1-7h8">
             <objects>
                 <viewController storyboardIdentifier="ListViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="anh-Dy-HTc" customClass="ListViewController" customModule="FirebaseTestDemo" customModuleProvider="target" sceneMemberID="viewController">
@@ -121,7 +122,7 @@
                                                     <rect key="frame" x="15" y="9" width="37.5" height="24"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                    <color key="textColor" red="0.0" green="0.56144142149999998" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="textColor" red="0.97406740839999995" green="0.01231630243" blue="0.077930671330000006" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vRG-8K-NB7">
@@ -150,67 +151,32 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7sC-yz-AlZ"/>
                     </view>
-                    <navigationItem key="navigationItem" title="清單" id="5pK-Om-2Cc">
+                    <navigationItem key="navigationItem" title="代辦清單" id="5pK-Om-2Cc">
                         <barButtonItem key="leftBarButtonItem" title="編輯" id="FDu-4z-bbe">
                             <connections>
                                 <action selector="editBtnClicked:" destination="anh-Dy-HTc" id="Z1F-AO-FeT"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="01n-c1-Eh6">
-                            <connections>
-                                <action selector="addBtnClicked:" destination="anh-Dy-HTc" id="Ofw-0B-UFE"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem style="plain" systemItem="add" id="01n-c1-Eh6">
+                                <connections>
+                                    <action selector="addBtnClicked:" destination="anh-Dy-HTc" id="Ofw-0B-UFE"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="登出" style="plain" id="SlM-Dy-qQq">
+                                <connections>
+                                    <action selector="signOutBtnClicked:" destination="anh-Dy-HTc" id="OTm-Z7-7VO"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="bGw-aC-244" id="TAs-Yk-BWW"/>
-                        <segue destination="WyC-Iy-B9t" kind="show" identifier="toDetailView" id="Ige-Qq-2vV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d7R-hL-7zy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="924" y="-52"/>
-        </scene>
-        <!--內容-->
-        <scene sceneID="uCc-o7-brT">
-            <objects>
-                <viewController storyboardIdentifier="DetailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="WyC-Iy-B9t" customClass="DetailViewController" customModule="FirebaseTestDemo" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Hb3-5P-ra3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lzn-j4-K0E">
-                                <rect key="frame" x="15" y="79" width="345" height="100"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="tBn-mb-Es2"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="PUh-EP-H23" firstAttribute="trailing" secondItem="Lzn-j4-K0E" secondAttribute="trailing" constant="15" id="F2x-8H-Ikz"/>
-                            <constraint firstItem="Lzn-j4-K0E" firstAttribute="leading" secondItem="PUh-EP-H23" secondAttribute="leading" constant="15" id="Qvn-Oa-vjw"/>
-                            <constraint firstItem="Lzn-j4-K0E" firstAttribute="top" secondItem="PUh-EP-H23" secondAttribute="top" constant="15" id="T6i-v5-YzD"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="PUh-EP-H23"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="內容" id="Ev2-YK-Rbj">
-                        <barButtonItem key="rightBarButtonItem" title="登出" id="vio-3m-jtk">
-                            <connections>
-                                <action selector="signOutBtnClicked:" destination="WyC-Iy-B9t" id="MYJ-cl-Eo6"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="detailLabel" destination="Lzn-j4-K0E" id="hXV-K4-w2G"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6vy-bo-Z8u" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1690" y="-52"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bot-cq-1aT">

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6DCE3911828450B6A32F313F /* Pods_FirebaseTestDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 738B093AEB62ED79663BFAE3 /* Pods_FirebaseTestDemo.framework */; };
+		DA43D93320889A5100772F51 /* Function.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA43D93220889A5100772F51 /* Function.swift */; };
 		DA43E738208728B400D076E6 /* GroceryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA43E737208728B400D076E6 /* GroceryItem.swift */; };
 		DA43E73A208728CF00D076E6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA43E739208728CF00D076E6 /* User.swift */; };
 		DA83AD1E2087181C00D2026F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA83AD1D2087181C00D2026F /* AppDelegate.swift */; };
@@ -16,7 +17,6 @@
 		DA83AD282087181C00D2026F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA83AD262087181C00D2026F /* LaunchScreen.storyboard */; };
 		DA83AD302087185E00D2026F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA83AD2F2087185E00D2026F /* LoginViewController.swift */; };
 		DA83AD322087187100D2026F /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA83AD312087187100D2026F /* ListViewController.swift */; };
-		DA83AD342087188100D2026F /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA83AD332087188100D2026F /* DetailViewController.swift */; };
 		DA83AD362087201B00D2026F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DA83AD352087201B00D2026F /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -24,6 +24,7 @@
 		295B8C44B10899ACA3196A48 /* Pods-FirebaseTestDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FirebaseTestDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-FirebaseTestDemo/Pods-FirebaseTestDemo.release.xcconfig"; sourceTree = "<group>"; };
 		738B093AEB62ED79663BFAE3 /* Pods_FirebaseTestDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FirebaseTestDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA43D930208870A700772F51 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
+		DA43D93220889A5100772F51 /* Function.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Function.swift; sourceTree = "<group>"; };
 		DA43E737208728B400D076E6 /* GroceryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryItem.swift; sourceTree = "<group>"; };
 		DA43E739208728CF00D076E6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DA43E73B20873F8100D076E6 /* FirebaseTestDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FirebaseTestDemo.entitlements; sourceTree = "<group>"; };
@@ -35,7 +36,6 @@
 		DA83AD292087181C00D2026F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DA83AD2F2087185E00D2026F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		DA83AD312087187100D2026F /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
-		DA83AD332087188100D2026F /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		DA83AD352087201B00D2026F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F4006EDAF41C765BEE186033 /* Pods-FirebaseTestDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FirebaseTestDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FirebaseTestDemo/Pods-FirebaseTestDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -99,10 +99,10 @@
 				DA83AD292087181C00D2026F /* Info.plist */,
 				DA83AD2F2087185E00D2026F /* LoginViewController.swift */,
 				DA83AD312087187100D2026F /* ListViewController.swift */,
-				DA83AD332087188100D2026F /* DetailViewController.swift */,
 				DA83AD352087201B00D2026F /* GoogleService-Info.plist */,
 				DA43E737208728B400D076E6 /* GroceryItem.swift */,
 				DA43E739208728CF00D076E6 /* User.swift */,
+				DA43D93220889A5100772F51 /* Function.swift */,
 			);
 			path = FirebaseTestDemo;
 			sourceTree = "<group>";
@@ -296,9 +296,9 @@
 				DA83AD302087185E00D2026F /* LoginViewController.swift in Sources */,
 				DA83AD1E2087181C00D2026F /* AppDelegate.swift in Sources */,
 				DA43E73A208728CF00D076E6 /* User.swift in Sources */,
+				DA43D93320889A5100772F51 /* Function.swift in Sources */,
 				DA83AD322087187100D2026F /* ListViewController.swift in Sources */,
 				DA43E738208728B400D076E6 /* GroceryItem.swift in Sources */,
-				DA83AD342087188100D2026F /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

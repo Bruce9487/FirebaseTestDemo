@@ -23,7 +23,9 @@ class ListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        ref = Database.database().reference(withPath: "groceryItems") //拿到DB資料
+        firebaseCheckState() //取得現在登入的使用者
+        
+        ref = Database.database().reference(withPath: "Items") //拿到DB資料
         
         ref.queryOrdered(byChild: "time").observe(.value, with: { snapshot in //依照時間排序取出
             
@@ -39,7 +41,6 @@ class ListViewController: UIViewController {
             self.tableView.reloadData() //重整顯示在View上
         })
         
-        firebaseCheckState() //取得現在登入的使用者
     }
 
     override func didReceiveMemoryWarning() {
@@ -51,10 +52,10 @@ class ListViewController: UIViewController {
 
     @IBAction func addBtnClicked(_ sender: Any) {
       
-        let alert = UIAlertController(title: "請輸入購買物品", message: "", preferredStyle: .alert)
+        let alert = UIAlertController(title: "請輸入待辦事項", message: "", preferredStyle: .alert)
         
         alert.addTextField { (textField) in
-            textField.placeholder = "您想買什麼？"
+            textField.placeholder = "您想做什麼？"
         }
         
         let okAction = UIAlertAction(title: "儲存", style: .default) { (alertVC) in
@@ -64,7 +65,7 @@ class ListViewController: UIViewController {
             //新增當下時間的格式轉換
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyy/MM/dd/ hh:mm:ss"
-            let timeZone = TimeZone(identifier: "UTC")
+            let timeZone = TimeZone.current
             dateFormatter.timeZone = timeZone
             let timeString = dateFormatter.string(from: Date())
             
@@ -100,6 +101,11 @@ class ListViewController: UIViewController {
         }
     }
     
+    @IBAction func signOutBtnClicked(_ sender: Any) {
+        
+        firebaseSignOut()
+    }
+    
     //MARK: Firebase相關事件
     
     func firebaseCheckState() {
@@ -109,6 +115,23 @@ class ListViewController: UIViewController {
             guard user != nil else { return }
             self.currentUser = User(authData: auth) //取得現在登入使用者
         }
+    }
+    
+    //MARK: Firebase相關事件
+    
+    func firebaseSignOut() {
+        
+        do {
+            try Auth.auth().signOut()
+            
+            let vc: UIViewController! = self.storyboard!.instantiateViewController(withIdentifier: "LoginViewController")
+            let window = UIApplication.shared.windows[0]
+            window.rootViewController = vc
+            
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        
     }
     
 }
@@ -130,7 +153,14 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if tableView.isEditing == false { //在非編輯狀態
-            self.performSegue(withIdentifier: "toDetailView", sender: self) //跳轉到下一頁
+
+            guard let cell = tableView.cellForRow(at: indexPath) else { return }
+            
+            let item = items[indexPath.row]
+            let isCompleted = !item.completed
+            cellToCompleted(cell: cell, isCompleted: isCompleted) //更新Cell
+            
+            item.ref?.updateChildValues(["completed":isCompleted]) //更新DB
         }
     }
     
@@ -169,17 +199,16 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
         return [delete]
     }
     
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    func cellToCompleted(cell: UITableViewCell, isCompleted: Bool) {
         
-        if segue.identifier == "toDetailView" {
-            
-            if let indexPath = tableView.indexPathForSelectedRow{ //取得點擊的Indexpath
-                let selectedRow = indexPath.row
-                let detailVC = segue.destination as! DetailViewController
-                detailVC.string = items[selectedRow].name //傳遞資料到下一頁
-            }
-            
+        if isCompleted {
+            cell.accessoryType = .checkmark
+            cell.textLabel?.textColor = UIColor.lightGray
+            cell.detailTextLabel?.textColor = UIColor.lightGray
+        } else {
+            cell.accessoryType = .none
+            cell.textLabel?.textColor = UIColor.red
+            cell.detailTextLabel?.textColor = UIColor.black
         }
     }
 }

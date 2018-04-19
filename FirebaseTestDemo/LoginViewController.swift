@@ -31,7 +31,9 @@ class LoginViewController: UIViewController, NVActivityIndicatorViewable {
     
     @IBAction func loginBtnClicked(_ sender: Any) {
         
-        guard emailTextField.text != nil && passwordTextField.text != nil else {
+        guard emailTextField.text?.isEmpty == false && passwordTextField.text?.isEmpty == false else {
+            let alert = showAlert(title: "提醒", message: "欄位不得為空")
+            self.present(alert, animated: true, completion: nil)
             return
         }
         
@@ -53,7 +55,11 @@ class LoginViewController: UIViewController, NVActivityIndicatorViewable {
             let emailTextfield = alertController.textFields![0]
             let passTextfield = alertController.textFields![1]
             
-            guard emailTextfield.text != nil && passTextfield.text != nil else {return }
+            guard emailTextfield.text?.isEmpty == false  && passTextfield.text?.isEmpty == false else {
+                let alert = showAlert(title: "提醒", message: "欄位不得為空")
+                self.present(alert, animated: true, completion: nil)
+                return
+            }
             
             self.firebaseRegister(email: emailTextfield.text, password: passTextfield.text)
         }
@@ -76,9 +82,12 @@ class LoginViewController: UIViewController, NVActivityIndicatorViewable {
         Auth.auth().createUser(withEmail: email!, password: password!) { (user, error) in
             
             guard error == nil else {
-                print("錯誤訊息: \(String(describing: error?.localizedDescription))")
+                
+                let alert = showAlert(title: "提醒", message: (error?.localizedDescription)!)
+                
                 DispatchQueue.main.async {
                     self.stopAnimating()
+                    self.present(alert, animated: true, completion: nil)
                 }
                 return
             }
@@ -86,9 +95,12 @@ class LoginViewController: UIViewController, NVActivityIndicatorViewable {
             Auth.auth().signIn(withEmail: email!, password: password!, completion: { (user, error) in
                 
                 guard error == nil else {
-                    print("錯誤訊息: \(String(describing: error?.localizedDescription))")
+                    
+                    let alert = showAlert(title: "提醒", message: (error?.localizedDescription)!)
+                    
                     DispatchQueue.main.async {
                         self.stopAnimating()
+                        self.present(alert, animated: true, completion: nil)
                     }
                     return
                 }
@@ -109,7 +121,13 @@ class LoginViewController: UIViewController, NVActivityIndicatorViewable {
         Auth.auth().signIn(withEmail: email!, password: password!, completion: { (user, error) in
             
             guard error == nil else {
-                print("錯誤訊息: \(String(describing: error?.localizedDescription))")
+                
+                let alert = showAlert(title: "提醒", message: (error?.localizedDescription)!)
+                
+                DispatchQueue.main.async {
+                    self.stopAnimating()
+                    self.present(alert, animated: true, completion: nil)
+                }
                 return
             }
             
