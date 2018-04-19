@@ -7,15 +7,31 @@
 //
 
 import UIKit
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        FirebaseApp.configure() //Firebase設定
+        
+        let mainStoryBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil) //取得MainStoryBoard
+
+        var vc: UIViewController! //設定vc變數
+        
+        if Auth.auth().currentUser != nil { //檢查是否已登入，如已登入自動跳轉
+            vc = mainStoryBoard.instantiateViewController(withIdentifier: "NavigationController")
+        }else{
+            vc = mainStoryBoard.instantiateViewController(withIdentifier: "LoginViewController")
+        }
+        
+        window?.rootViewController = vc //設定根ViewController
+        window?.makeKeyAndVisible() //成為主視窗
+        
         return true
     }
 
