@@ -32,6 +32,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = vc //設定根ViewController
         window?.makeKeyAndVisible() //成為主視窗
         
+//        Database.database().isPersistenceEnabled = true // DB離線使用
+        
         return true
     }
 

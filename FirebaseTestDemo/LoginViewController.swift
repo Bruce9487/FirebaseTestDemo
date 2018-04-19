@@ -47,7 +47,7 @@ class LoginViewController: UIViewController, NVActivityIndicatorViewable {
             textfield.placeholder = "請輸入電子信箱"
         }
         alertController.addTextField { (textfield) in
-            textfield.placeholder = "請輸入密碼"
+            textfield.placeholder = "請輸入密碼（至少六位）"
         }
         
         let okAction = UIAlertAction(title: "註冊", style: .default) { (alert) in

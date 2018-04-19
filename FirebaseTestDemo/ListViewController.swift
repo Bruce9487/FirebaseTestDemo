@@ -147,6 +147,8 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.text = items[indexPath.row].name
         cell.detailTextLabel?.text = items[indexPath.row].addedByUser + " , " + items[indexPath.row].time
+        cellToCompleted(cell: cell, isCompleted: items[indexPath.row].completed)
+        
         return cell
     }
     
